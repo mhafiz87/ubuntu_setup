@@ -76,6 +76,16 @@ echo 'export PATH="$PATH:/opt/neovim/bin"' >> ~/.bashrc
 
 ```
 
+## Wezterm
+
+```bash
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update
+sudo apt install wezterm -y
+
+```
+
 ---
 
 ## References
@@ -86,5 +96,6 @@ echo 'export PATH="$PATH:/opt/neovim/bin"' >> ~/.bashrc
 4. [ripgrep](https://github.com/BurntSushi/ripgrep)
 5. [fzf](https://github.com/junegunn/fzf)
 6. [fastfetch](https://github.com/fastfetch-cli/fastfetch)
-7. [How to get git hub repo latest version using bash or powershell](https://blog.markvincze.com/download-artifacts-from-a-latest-github-release-in-sh-and-powershell/)
-8. [How to get git hub repo latest version using JQ](https://fabianlee.org/2021/02/16/bash-determining-latest-github-release-tag-and-version/)
+7. [wezterm](https://wezfurlong.org/wezterm/index.html)
+8. [How to get git hub repo latest version using bash or powershell](https://blog.markvincze.com/download-artifacts-from-a-latest-github-release-in-sh-and-powershell/)
+9. [How to get git hub repo latest version using JQ](https://fabianlee.org/2021/02/16/bash-determining-latest-github-release-tag-and-version/)
