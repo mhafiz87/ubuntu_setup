@@ -8,6 +8,22 @@ sudo apt upgrade -y
 sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep
 ```
 
+## XDG Path
+
+```bash
+echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bashrc
+echo 'export XDG_DATA_HOME="$HOME/.local/share"' >> ~/.bashrc
+echo 'export XDG_CACHE_HOME="$HOME/.cache"' >> ~/.bashrc
+
+echo 'if [ ! -w ${XDG_RUNTIME_DIR:="/run/user/$UID"} ]; then
+  echo "\$XDG_RUNTIME_DIR ($XDG_RUNTIME_DIR) not writable. Unsetting." >&2
+  unset XDG_RUNTIME_DIR
+else
+  export XDG_RUNTIME_DIR
+fi' >> ~/.bashrc
+
+```
+
 ## FastFetch
 
 ```bash
