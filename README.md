@@ -5,7 +5,7 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep
+sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree
 ```
 
 ## XDG Path
@@ -60,6 +60,14 @@ mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 echo 'export PATH="$PATH:~/.local/bin"' >> ~/.bashrc
 source ~/.bashrc
+echo "export FZF_CTRL_T_OPTS=\"
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'\"" >> ~/.bashrc
+echo 'export FZF_CTRL_R_OPTS="
+  --color header:italic"' >> ~/.bashrc
+echo "export FZF_ALT_C_OPTS=\"
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'\"" >> ~/.bashrc
 
 ```
 
