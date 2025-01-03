@@ -65,3 +65,15 @@ sudo mv ~/Downloads/nvim-linux64 /opt/neovim
 echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
 
 ```
+
+---
+
+## References
+
+1. [Neovim](https://github.com/neovim/neovim)
+2. [jq](https://github.com/jqlang/jq)
+3. [bat](https://github.com/sharkdp/bat)
+4. [ripgrep](https://github.com/BurntSushi/ripgrep)
+5. [fzf](https://github.com/junegunn/fzf)
+6. [How to get git hub repo latest version using bash or powershell](https://blog.markvincze.com/download-artifacts-from-a-latest-github-release-in-sh-and-powershell/)
+7. [How to get git hub repo latest version using JQ](https://fabianlee.org/2021/02/16/bash-determining-latest-github-release-tag-and-version/)
