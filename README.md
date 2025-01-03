@@ -70,7 +70,7 @@ REPO="neovim/neovim"
 LATEST_VERSION=$(curl -sL https://api.github.com/repos/$REPO/releases/latest | jq -r ".tag_name")
 ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/nvim-linux64.tar.gz"
 curl -L $ARTIFACT_URL -o ~/Downloads/neovim.tar.gz
-tar -xvzf ~/Downloads/neovim.tar.gz -C ~/Downlaods
+tar -xvzf ~/Downloads/neovim.tar.gz -C ~/Downloads
 sudo mv ~/Downloads/nvim-linux64 /opt/neovim
 echo 'export PATH="$PATH:/opt/neovim/bin"' >> ~/.bashrc
 
