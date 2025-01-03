@@ -8,6 +8,16 @@ sudo apt upgrade -y
 sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep
 ```
 
+## FastFetch
+
+```bash
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+sudo apt update
+sudo apt install fastfetch -y
+echo 'fastfetch' >> ~/.bashrc
+
+```
+
 ## JQ
 
 ```bash
@@ -62,7 +72,7 @@ ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/nvim-li
 curl -L $ARTIFACT_URL -o ~/Downloads/neovim.tar.gz
 tar -xvzf ~/Downloads/neovim.tar.gz -C ~/Downlaods
 sudo mv ~/Downloads/nvim-linux64 /opt/neovim
-echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
+echo 'export PATH="$PATH:/opt/neovim/bin"' >> ~/.bashrc
 
 ```
 
@@ -75,5 +85,6 @@ echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
 3. [bat](https://github.com/sharkdp/bat)
 4. [ripgrep](https://github.com/BurntSushi/ripgrep)
 5. [fzf](https://github.com/junegunn/fzf)
-6. [How to get git hub repo latest version using bash or powershell](https://blog.markvincze.com/download-artifacts-from-a-latest-github-release-in-sh-and-powershell/)
-7. [How to get git hub repo latest version using JQ](https://fabianlee.org/2021/02/16/bash-determining-latest-github-release-tag-and-version/)
+6. [fastfetch](https://github.com/fastfetch-cli/fastfetch)
+7. [How to get git hub repo latest version using bash or powershell](https://blog.markvincze.com/download-artifacts-from-a-latest-github-release-in-sh-and-powershell/)
+8. [How to get git hub repo latest version using JQ](https://fabianlee.org/2021/02/16/bash-determining-latest-github-release-tag-and-version/)
