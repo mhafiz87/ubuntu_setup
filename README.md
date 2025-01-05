@@ -5,7 +5,7 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard
+sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard pass pinentry-tty gnupg
 
 ```
 
@@ -103,6 +103,8 @@ ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/gcm-lin
 curl -L $ARTIFACT_URL -o ~/Downloads/gcm-linux-amd64.deb
 sudo dpkg -i ~/Downloads/gcm-linux-amd64.deb
 git-credential-manager configure
+git config --global credential.credentialStore gpg
+echo "export GPG_TTY=$(tty)" >> ~/.bashrc
 
 ```
 
@@ -145,3 +147,4 @@ sudo apt install wezterm -y
 10. [Check Wayland or X11](https://unix.stackexchange.com/questions/202891/how-to-know-whether-wayland-or-x11-is-being-used)
 11. [Clipboard in Ubuntu](https://askubuntu.com/questions/1486871/how-can-i-copy-and-paste-outside-of-neovim)
 12. [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager)
+13. [Setting up Git Credential Manager with 'Pass'](https://medium.com/@brightoning/cozy-ubuntu-24-04-setting-up-git-credential-manager-with-pass-2cae4c02ff8c)
