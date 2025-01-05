@@ -5,7 +5,14 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree
+sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard
+
+```
+
+## To Check Wayland or X11
+
+```bash
+loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'
 ```
 
 ## XDG Path
@@ -123,3 +130,5 @@ sudo apt install wezterm -y
 7. [wezterm](https://wezfurlong.org/wezterm/index.html)
 8. [How to get git hub repo latest version using bash or powershell](https://blog.markvincze.com/download-artifacts-from-a-latest-github-release-in-sh-and-powershell/)
 9. [How to get git hub repo latest version using JQ](https://fabianlee.org/2021/02/16/bash-determining-latest-github-release-tag-and-version/)
+10. [Check Wayland or X11](https://unix.stackexchange.com/questions/202891/how-to-know-whether-wayland-or-x11-is-being-used)
+11. [Clipboard in Ubuntu](https://askubuntu.com/questions/1486871/how-can-i-copy-and-paste-outside-of-neovim)
