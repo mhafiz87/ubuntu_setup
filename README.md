@@ -94,6 +94,18 @@ git config --global merge.conflictStyle zdiff3
 
 ```
 
+## Git Credential Manager
+
+```bash
+REPO="git-ecosystem/git-credential-manager"
+LATEST_VERSION=$(curl -sL https://api.github.com/repos/$REPO/releases/latest | jq -r ".tag_name")
+ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/gcm-linux_amd64.${LATEST_VERSION//v/}.deb"
+curl -L $ARTIFACT_URL -o ~/Downloads/gcm-linux-amd64.deb
+sudo dpkg -i ~/Downloads/gcm-linux-amd64.deb
+git-credential-manager configure
+
+```
+
 ## Neovim
 
 ```bash
@@ -132,3 +144,4 @@ sudo apt install wezterm -y
 9. [How to get git hub repo latest version using JQ](https://fabianlee.org/2021/02/16/bash-determining-latest-github-release-tag-and-version/)
 10. [Check Wayland or X11](https://unix.stackexchange.com/questions/202891/how-to-know-whether-wayland-or-x11-is-being-used)
 11. [Clipboard in Ubuntu](https://askubuntu.com/questions/1486871/how-can-i-copy-and-paste-outside-of-neovim)
+12. [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager)
