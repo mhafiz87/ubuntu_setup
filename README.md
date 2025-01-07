@@ -31,16 +31,6 @@ fi' >> ~/.bashrc
 
 ```
 
-## FastFetch
-
-```bash
-sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-sudo apt update
-sudo apt install fastfetch -y
-echo 'fastfetch' >> ~/.bashrc
-
-```
-
 ## JQ
 
 ```bash
@@ -49,9 +39,35 @@ GITHUB_URL="https://github.com/$REPO/releases/latest"
 LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' $GITHUB_URL)
 LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
 ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/jq-linux-amd64"
+if [ -d "/opt/jq" ]; then
+    sudo rm -rf /opt/jq
+fi
 sudo mkdir /opt/jq
-sudo curl -o /opt/jq/jq $ARTIFACT_URL
+sudo curl -L $ARTIFACT_URL -o /opt/jq/jq 
 echo 'export PATH="$PATH:/opt/jq"' >> ~/.bashrc
+source ~/.bashrc
+
+```
+
+## FastFetch
+
+```bash
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+sudo apt update
+sudo apt install fastfetch -y
+echo 'fastfetch' >> ~/.bashrc
+source ~/.bashrc
+
+REPO="fastfetch-cli/fastfetch"
+LATEST_VERSION=$(curl -sL https://api.github.com/repos/$REPO/releases/latest | jq -r ".tag_name")
+ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/fastfetch-linux-amd64.deb"
+if [ ! -d "$HOME/Downloads" ]; then
+    mkdir $HOME/Downloads
+fi
+curl -L $ARTIFACT_URL -o ~/Downloads/fastfetch.deb
+sudo dpkg -i ~/Downloads/fastfetch.deb
+rm ~/Downloads/fastfetch.deb
+echo 'fastfetch' >> ~/.bashrc
 source ~/.bashrc
 
 ```
@@ -59,9 +75,13 @@ source ~/.bashrc
 ## FZF, BAT
 
 ```bash
+if [ -d "/opt/fzf" ]; then
+    sudo rm -rf /opt/fzf
+fi
 sudo git clone --depth 1 https://github.com/junegunn/fzf.git /opt/fzf
 sudo /opt/fzf/install
 echo 'export PATH="$PATH:/opt/fzf/bin"' >> ~/.bashrc
+echo 'eval "$(fzf --bash)"' >> ~/.bashrc
 source ~/.bashrc
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -75,6 +95,7 @@ echo 'export FZF_CTRL_R_OPTS="
 echo "export FZF_ALT_C_OPTS=\"
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'\"" >> ~/.bashrc
+source ~/.bashrc
 
 ```
 
@@ -84,6 +105,9 @@ echo "export FZF_ALT_C_OPTS=\"
 REPO="dandavison/delta"
 LATEST_VERSION=$(curl -sL https://api.github.com/repos/$REPO/releases/latest | jq -r ".tag_name")
 ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/git-delta_${LATEST_VERSION}_amd64.deb"
+if [ ! -d "$HOME/Downloads" ]; then
+    mkdir $HOME/Downloads
+fi
 curl -L $ARTIFACT_URL -o ~/Downloads/delta.deb
 sudo dpkg -i ~/Downloads/delta.deb
 rm ~/Downloads/delta.deb
@@ -105,6 +129,15 @@ sudo dpkg -i ~/Downloads/gcm-linux-amd64.deb
 git-credential-manager configure
 git config --global credential.credentialStore gpg
 echo "export GPG_TTY=$(tty)" >> ~/.bashrc
+
+```
+
+## Color Scripts
+
+```bash
+git clone https://gitlab.com/dwt1/shell-color-scripts.git
+cd shell-color-scripts
+sudo make install
 
 ```
 
