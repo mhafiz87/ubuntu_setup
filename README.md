@@ -8,6 +8,7 @@ sudo apt upgrade -y
 sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard bash-completion pass pinentry-tty gnupg
 echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 source ~/.bashrc
+touch ~/.bash_profile
 
 ```
 
@@ -30,6 +31,7 @@ echo 'if [ ! -w ${XDG_RUNTIME_DIR:="/run/user/$UID"} ]; then
 else
   export XDG_RUNTIME_DIR
 fi' >> ~/.bashrc
+source ~/.bashrc
 
 ```
 
@@ -47,6 +49,7 @@ fi
 sudo mkdir /opt/jq
 sudo curl -L $ARTIFACT_URL -o /opt/jq/jq 
 echo 'export PATH="$PATH:/opt/jq"' >> ~/.bashrc
+sudo chmod 755 /opt/jq/jq
 source ~/.bashrc
 
 ```
@@ -131,6 +134,26 @@ sudo dpkg -i ~/Downloads/gcm-linux-amd64.deb
 git-credential-manager configure
 git config --global credential.credentialStore gpg
 echo "export GPG_TTY=$(tty)" >> ~/.bashrc
+
+```
+
+## Oh My Posh
+
+```bash
+curl -s https://ohmyposh.dev/install.sh | bash -s
+echo "oh-my-posh
+if [[ \$? -eq 0 ]]; then
+    clear
+    eval \"\$(oh-my-posh init bash --config ~/dotfiles/ohmyposh/zen.toml)\"
+fi" >> ~/.bashrc
+souce ~/.bashrc
+
+```
+
+## UV (Python)
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ```
 
