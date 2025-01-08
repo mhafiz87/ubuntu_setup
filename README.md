@@ -48,6 +48,7 @@ if [ -d "/opt/jq" ]; then
 fi
 sudo mkdir /opt/jq
 sudo curl -L $ARTIFACT_URL -o /opt/jq/jq 
+echo -e '\n' >> ~/.bashrc
 echo 'export PATH="$PATH:/opt/jq"' >> ~/.bashrc
 sudo chmod 755 /opt/jq/jq
 source ~/.bashrc
@@ -154,6 +155,19 @@ souce ~/.bashrc
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
+```
+
+## Pyenv (Python)
+
+```bash
+curl -fsSL https://pyenv.run | bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init - bash)"' >> ~/.bashrc
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(pyenv init - bash)"' >> ~/.bash_profile
 
 ```
 
