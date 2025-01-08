@@ -5,7 +5,7 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion pass pinentry-tty gnupg
+sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion python3.12-venv pass pinentry-tty gnupg
 echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 source ~/.bashrc
 touch ~/.bash_profile
@@ -218,6 +218,13 @@ curl -L $ARTIFACT_URL -o ~/Downloads/neovim.tar.gz
 tar -xvzf ~/Downloads/neovim.tar.gz -C ~/Downloads
 sudo mv ~/Downloads/nvim-linux64 /opt/neovim
 echo 'export PATH="$PATH:/opt/neovim/bin"' >> ~/.bashrc
+source ~/.bashrc
+mkdir ~/.venv
+cd ~/.venv
+python3 -m venv neovim
+source ~/.venv/neovim/bin/activate
+python -m pip install pynvim
+deactivate
 
 ```
 
