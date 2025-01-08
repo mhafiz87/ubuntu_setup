@@ -5,7 +5,7 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard bash-completion pass pinentry-tty gnupg
+sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion pass pinentry-tty gnupg
 echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 source ~/.bashrc
 touch ~/.bash_profile
@@ -186,6 +186,25 @@ echo 'eval "$(pyenv init - bash)"' >> ~/.bash_profile
 git clone https://gitlab.com/dwt1/shell-color-scripts.git
 cd shell-color-scripts
 sudo make install
+
+```
+
+## NodeJS
+
+```bash
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+
+# Download and install Node.js:
+nvm install 22
+
+# Verify the Node.js version:
+node -v
+nvm current
+
+# Verify npm version:
+npm -v
 
 ```
 
