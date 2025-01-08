@@ -12,6 +12,15 @@ touch ~/.bash_profile
 
 ```
 
+## Symbolic Link
+
+```
+# Only perform after clone dotfiles
+ln -s ~/dotfiles/wezterm ~/.config/
+ln -s ~/dotfiles/neovim/nvim_dev ~/.config/nvim-dev
+
+```
+
 ## To Check Wayland or X11
 
 ```bash
