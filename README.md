@@ -5,7 +5,7 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion python3.12-venv pass pinentry-tty gnupg
+sudo apt install -y git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion python3.12-venv pass pinentry-tty gnupg
 echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
 source ~/.bashrc
 touch ~/.bash_profile
