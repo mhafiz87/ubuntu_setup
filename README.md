@@ -6,9 +6,15 @@
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion python3.12-venv pass pinentry-tty gnupg
-echo "source /etc/profile.d/bash_completion.sh" >> ~/.bashrc
+echo "" >> ~/.bashrc
+echo -e 'source /etc/profile.d/bash_completion.sh\n' >> ~/.bashrc
 source ~/.bashrc
-touch ~/.bash_profile
+
+```
+
+## Clone Dotfiles
+
+```bash
 
 ```
 
@@ -18,6 +24,7 @@ touch ~/.bash_profile
 # Only perform after clone dotfiles
 ln -s ~/dotfiles/wezterm ~/.config/
 ln -s ~/dotfiles/neovim/nvim_dev ~/.config/nvim-dev
+ln -s ~/dotfiles/bash/.bash_profile ~/.bash_profile
 
 ```
 
@@ -25,6 +32,7 @@ ln -s ~/dotfiles/neovim/nvim_dev ~/.config/nvim-dev
 
 ```bash
 loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'
+
 ```
 
 ## XDG Path
@@ -40,6 +48,7 @@ echo 'if [ ! -w ${XDG_RUNTIME_DIR:="/run/user/$UID"} ]; then
 else
   export XDG_RUNTIME_DIR
 fi' >> ~/.bashrc
+echo "" >> ~/.bashrc
 source ~/.bashrc
 
 ```
@@ -57,8 +66,8 @@ if [ -d "/opt/jq" ]; then
 fi
 sudo mkdir /opt/jq
 sudo curl -L $ARTIFACT_URL -o /opt/jq/jq 
-echo -e '\n' >> ~/.bashrc
 echo 'export PATH="$PATH:/opt/jq"' >> ~/.bashrc
+echo "" >> ~/.bashrc
 sudo chmod 755 /opt/jq/jq
 source ~/.bashrc
 
@@ -67,12 +76,6 @@ source ~/.bashrc
 ## FastFetch
 
 ```bash
-sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
-sudo apt update
-sudo apt install fastfetch -y
-echo 'fastfetch' >> ~/.bashrc
-source ~/.bashrc
-
 REPO="fastfetch-cli/fastfetch"
 LATEST_VERSION=$(curl -sL https://api.github.com/repos/$REPO/releases/latest | jq -r ".tag_name")
 ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/fastfetch-linux-amd64.deb"
@@ -82,6 +85,7 @@ fi
 curl -L $ARTIFACT_URL -o ~/Downloads/fastfetch.deb
 sudo dpkg -i ~/Downloads/fastfetch.deb
 rm ~/Downloads/fastfetch.deb
+
 echo 'fastfetch' >> ~/.bashrc
 source ~/.bashrc
 
@@ -97,10 +101,12 @@ sudo git clone --depth 1 https://github.com/junegunn/fzf.git /opt/fzf
 sudo /opt/fzf/install
 echo 'export PATH="$PATH:/opt/fzf/bin"' >> ~/.bashrc
 echo 'eval "$(fzf --bash)"' >> ~/.bashrc
+echo "" >> ~/.bashrc
 source ~/.bashrc
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
-echo 'export PATH="$PATH:~/.local/bin"' >> ~/.bashrc
+echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
+echo "" >> ~/.bashrc
 source ~/.bashrc
 echo "export FZF_CTRL_T_OPTS=\"
   --walker-skip .git,node_modules,target
@@ -110,6 +116,7 @@ echo 'export FZF_CTRL_R_OPTS="
 echo "export FZF_ALT_C_OPTS=\"
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'\"" >> ~/.bashrc
+echo "" >> ~/.bashrc
 source ~/.bashrc
 
 ```
@@ -156,7 +163,8 @@ if [[ \$? -eq 0 ]]; then
     clear
     eval \"\$(oh-my-posh init bash --config ~/dotfiles/ohmyposh/zen.toml)\"
 fi" >> ~/.bashrc
-souce ~/.bashrc
+echo "" >> ~/.bashrc
+source ~/.bashrc
 
 ```
 
@@ -164,6 +172,8 @@ souce ~/.bashrc
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
+echo "" >> ~/.bashrc
+source ~/.bashrc
 
 ```
 
@@ -174,9 +184,8 @@ curl -fsSL https://pyenv.run | bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init - bash)"' >> ~/.bashrc
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(pyenv init - bash)"' >> ~/.bash_profile
+echo "" >> ~/.bashrc
+source ~/.bashrc
 
 ```
 
@@ -186,6 +195,7 @@ echo 'eval "$(pyenv init - bash)"' >> ~/.bash_profile
 git clone https://gitlab.com/dwt1/shell-color-scripts.git
 cd shell-color-scripts
 sudo make install
+cd ~
 
 ```
 
