@@ -254,6 +254,77 @@ sudo apt install wezterm -y
 
 ```
 
+## Setup DHCP server for one of network interfaces
+
+- Find your target network interface to set as DHCP server:
+
+```bash
+ip a
+```
+
+- install isc-dhcp-server
+
+```bash
+sudo apt update
+sudo apt install isc-dhcp-server -y
+```
+
+- edit target network interface to use static IP in `/etc/netplan/01-network-manager-all.yaml`. It might be a different yaml file, check what yaml file exist in `/etc/netplan` directory. In below example, `enp7s0` is the default LAN port, by setting dhcp4 to yes, it will be assign IP by the router or internet provider. `enx00051bc1e31d` is the `USB to ethernet` device to be used as DHCP server.
+
+```bash
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp7s0:
+      dhcp4: yes
+    enx00051bc1e31d:
+      dhcp4: no
+      addresses: [192.168.0.1/24]
+```
+
+- apply changes from previous step:
+
+```bash
+sudo netplan apply
+```
+
+- backup `/etc/dhcp/dhcpd.conf`
+
+```bash
+sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.ori
+```
+
+- configure dhcp server by editing `/etc/dhcp/dhcpd.conf`,:
+
+```bash
+default-lease-time 43200;
+max-lease-time 86400;
+option subnet-mask 255.255.255.0;
+option broadcast-address 192.168.0.255;
+option domain-name "local.lan";
+authoritative;
+subnet 192.168.0.0 netmask 255.255.255.0 {
+  range 192.168.0.100 192.168.0.200;
+  option routers 192.168.0.1;
+  option domain-name-servers 192.168.0.1;
+}
+```
+
+- set network interface to use as DHCP server by editing `/etc/default/isc-dhcp-server`
+
+```bash
+INTERFACESv4="<network-interface>"
+```
+
+- start isc-dhcp-server
+
+```bash
+sudo systemctl start isc-dhcp-server
+sudo systemctl enable isc-dhcp-server
+sudo systemctl status isc-dhcp-server
+```
+
 ---
 
 ## References
