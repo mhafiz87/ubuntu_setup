@@ -290,6 +290,12 @@ source $HOME/.bashrc
 clear
 ```
 
+### bash-language-server
+
+```bash
+sudo snap install bash-language-server --classic
+```
+
 ## Setup DHCP server for one of network interfaces
 
 - Find your target network interface to set as DHCP server:
