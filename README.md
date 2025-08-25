@@ -53,7 +53,9 @@ source ~/.bashrc
 
 ```
 
-## JQ
+## Apps
+
+### JQ
 
 ```bash
 REPO="jqlang/jq"
@@ -73,7 +75,7 @@ source ~/.bashrc
 
 ```
 
-## FastFetch
+### FastFetch
 
 ```bash
 REPO="fastfetch-cli/fastfetch"
@@ -91,7 +93,7 @@ source ~/.bashrc
 
 ```
 
-## FZF, BAT
+### FZF, BAT
 
 ```bash
 if [ -d "/opt/fzf" ]; then
@@ -121,7 +123,7 @@ source ~/.bashrc
 
 ```
 
-## Delta for Git
+### Delta for Git
 
 ```bash
 REPO="dandavison/delta"
@@ -140,7 +142,7 @@ git config --global merge.conflictStyle zdiff3
 
 ```
 
-## Git Credential Manager
+### Git Credential Manager
 
 ```bash
 REPO="git-ecosystem/git-credential-manager"
@@ -154,7 +156,7 @@ echo "export GPG_TTY=$(tty)" >> ~/.bashrc
 
 ```
 
-## Oh My Posh
+### Oh My Posh
 
 ```bash
 curl -s https://ohmyposh.dev/install.sh | bash -s
@@ -168,7 +170,7 @@ source ~/.bashrc
 
 ```
 
-## UV (Python)
+### UV (Python)
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -177,7 +179,7 @@ source ~/.bashrc
 
 ```
 
-## Pyenv (Python)
+### Pyenv (Python)
 
 ```bash
 curl -fsSL https://pyenv.run | bash
@@ -195,7 +197,7 @@ clear
   
 ```
 
-## Color Scripts
+### Color Scripts
 
 ```bash
 git clone https://gitlab.com/dwt1/shell-color-scripts.git
@@ -205,7 +207,7 @@ cd ~
 
 ```
 
-## NodeJS
+### NodeJS
 
 ```bash
 # Download and install nvm:
@@ -224,7 +226,7 @@ npm -v
 
 ```
 
-## Neovim
+### Neovim
 
 ```bash
 REPO="neovim/neovim"
@@ -244,7 +246,7 @@ deactivate
 
 ```
 
-## Wezterm
+### Wezterm
 
 ```bash
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
@@ -252,6 +254,25 @@ echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez
 sudo apt update
 sudo apt install wezterm -y
 
+```
+
+## LSP
+
+### LuaLS
+
+```bash
+test -d $HOME/lsp || mkdir -p $HOME/lsp
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/LuaLS/lua-language-server/releases/latest | jq -r '.assets[] | select(.name | contains("lua-language-server-3.15.0-linux-x64.tar.gz")) | .browser_download_url')
+curl -L -o luals.tar.gz $DOWNLOAD_URL
+test -d $HOME/lsp/luals || rmdir -rf $HOME/lsp/luals
+mkdir -p $HOME/lsp/luals
+tar -xzf $HOME/luals.tar.gz -C $HOME/lsp/luals
+rm -f $HOME/luals.tar.gz
+if ! command -v lua-language-server; then
+  echo "export PATH=$PATH:$HOME/lsp/luals/bin" >> $HOME/.bashrc
+fi
+source $HOME/.bashrc
+clear
 ```
 
 ## Setup DHCP server for one of network interfaces
