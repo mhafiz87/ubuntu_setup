@@ -101,7 +101,7 @@ if [ -d "/opt/fzf" ]; then
 fi
 sudo git clone --depth 1 https://github.com/junegunn/fzf.git /opt/fzf
 sudo /opt/fzf/install
-echo 'export PATH="$PATH:/opt/fzf/bin"' >> ~/.bashrc
+echo 'export PATH=$PATH:/opt/fzf/bin' >> ~/.bashrc
 echo 'eval "$(fzf --bash)"' >> ~/.bashrc
 echo "" >> ~/.bashrc
 source ~/.bashrc
