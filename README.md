@@ -269,7 +269,22 @@ mkdir -p $HOME/lsp/luals
 tar -xzf $HOME/luals.tar.gz -C $HOME/lsp/luals
 rm -f $HOME/luals.tar.gz
 if ! command -v lua-language-server; then
-  echo "export PATH=$PATH:$HOME/lsp/luals/bin" >> $HOME/.bashrc
+  echo 'export PATH=$PATH:$HOME/lsp/luals/bin' >> $HOME/.bashrc
+fi
+source $HOME/.bashrc
+clear
+```
+
+### Stylua
+
+```bash
+test -d $HOME/lsp || mkdir -p $HOME/lsp.
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/JohnnyMorganz/StyLua/releases/latest | jq -r '.assets[] | select(.name | contains("stylua-linux-x86_64.zip")) | .browser_download_url')
+curl -L -o stylua.zip $DOWNLOAD_URL
+unzip -o $HOME/stylua.zip -d $HOME/lsp
+rm -f $HOME/stylua.zip
+if ! command -v stylua; then
+  echo 'export PATH=$PATH:$HOME/lsp' >> $HOME/.bashrc
 fi
 source $HOME/.bashrc
 clear
