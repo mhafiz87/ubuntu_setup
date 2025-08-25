@@ -235,7 +235,7 @@ ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/nvim-li
 curl -L $ARTIFACT_URL -o ~/Downloads/neovim.tar.gz
 tar -xvzf ~/Downloads/neovim.tar.gz -C ~/Downloads
 sudo mv ~/Downloads/nvim-linux64 /opt/neovim
-echo 'export PATH="$PATH:/opt/neovim/bin"' >> ~/.bashrc
+echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
 source ~/.bashrc
 mkdir ~/.venv
 cd ~/.venv
