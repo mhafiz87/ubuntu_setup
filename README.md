@@ -53,6 +53,19 @@ source ~/.bashrc
 
 ```
 
+## Fonts
+
+### JetBrains
+
+```bash
+test -d $HOME/.fonts || mkdir -p $HOME/.fonts
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r '.assets[] | select(.name | contains("JetBrainsMono.zip")) | .browser_download_url')
+curl -L -o $HOME/JetBrainsMono.zip $DOWNLOAD_URL
+unzip -o $HOME/JetBrainsMono.zip -d $HOME/.fonts
+rm -f $HOME/JetBrainsMono.zip
+find . -maxdepth 1 -type f ! -regex ".*MonoNerdFont-.*" -delete
+```
+
 ## Apps
 
 ### JQ
