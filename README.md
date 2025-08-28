@@ -299,8 +299,12 @@ sudo snap install bash-language-server --classic
 ## Add nvim_clean to bash
 
 ```bash
-nvim_set_1="set mouse=a nu rnu splitbelow splitright smartindent expandtab shiftwidth=4 softtabstop=4 timeoutlen=500 nowrap clipboard=unnamedplus completeopt=fuzzy,menu,menuone,noinsert,noselect,popup ignorecase scrolloff=8 sidescrolloff=8 guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175 wildmode=longest:full,full wildoptions=fuzzy,pum,tagfile winborder=rounded"
+nvim_set_1="set mouse=a nu rnu splitbelow splitright smartindent expandtab shiftwidth=4 softtabstop=4 timeoutlen=500 nowrap clipboard=unnamedplus completeopt=fuzzy,menu,menuone,noinsert,noselect,popup ignorecase scrolloff=8 sidescrolloff=8 guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175 wildmode=longest:full,full wildoptions=fuzzy,pum,tagfile winborder=rounded list listchars=extends:🠞,precedes:🠜"
 nvim_set_2="imap jk <Esc>"
+nvim_set_3="highlight NonText gui=NONE guifg=#908caa"
+nvim_set_4="vmap y ygv<Esc>"
+nvim_set_10="nnoremap <expr> j v:count == 0 ? 'gj' : 'j'"
+
 # append |alias nvim_clean="nvim --clean -c |
 sed -i '$s/$/\nalias nvim_clean="nvim --clean -c /' $HOME/.bashrc
 # append |'|
@@ -309,6 +313,7 @@ sed -i '$s/$/'\''/' $HOME/.bashrc
 sed -i '$s|$|'"$nvim_set_1"'|' $HOME/.bashrc
 # append |'|
 sed -i '$s/$/'\''/' $HOME/.bashrc
+
 # append | -c |
 sed -i '$s/$/ -c /' $HOME/.bashrc
 # append |'|
@@ -317,6 +322,25 @@ sed -i '$s/$/'\''/' $HOME/.bashrc
 sed -i '$s|$|'"$nvim_set_2"'|' $HOME/.bashrc
 # append |'|
 sed -i '$s/$/'\''/' $HOME/.bashrc
+
+# append | -c |
+sed -i '$s/$/ -c /' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+# append $nvim_set_2
+sed -i '$s|$|'"$nvim_set_3"'|' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+
+# append | -c |
+sed -i '$s/$/ -c /' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+# append $nvim_set_2
+sed -i '$s|$|'"$nvim_set_4"'|' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+
 # append |"|
 sed -i '$s/$/"/' $HOME/.bashrc
 source $HOME/.bashrc
