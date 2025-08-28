@@ -296,6 +296,32 @@ clear
 sudo snap install bash-language-server --classic
 ```
 
+## Add nvim_clean to bash
+
+```bash
+nvim_set_1="set mouse=a nu rnu splitbelow splitright smartindent expandtab shiftwidth=4 softtabstop=4 timeoutlen=500 nowrap clipboard=unnamedplus completeopt=fuzzy,menu,menuone,noinsert,noselect,popup ignorecase scrolloff=8 sidescrolloff=8 guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175 wildmode=longest:full,full wildoptions=fuzzy,pum,tagfile winborder=rounded"
+nvim_set_2="imap jk <Esc>"
+# append |alias nvim_clean="nvim --clean -c |
+sed -i '$s/$/\nalias nvim_clean="nvim --clean -c /' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+# append $nvim_set_1
+sed -i '$s|$|'"$nvim_set_1"'|' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/ -c /' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+# append $nvim_set_2
+sed -i '$s|$|'"$nvim_set_2"'|' $HOME/.bashrc
+# append |'|
+sed -i '$s/$/'\''/' $HOME/.bashrc
+# append |"|
+sed -i '$s/$/"/' $HOME/.bashrc
+source $HOME/.bashrc
+```
+
 ## Setup DHCP server for one of network interfaces
 
 - Find your target network interface to set as DHCP server:
