@@ -309,7 +309,7 @@ sed -i '$s/$/'\''/' $HOME/.bashrc
 sed -i '$s|$|'"$nvim_set_1"'|' $HOME/.bashrc
 # append |'|
 sed -i '$s/$/'\''/' $HOME/.bashrc
-# append |'|
+# append | -c |
 sed -i '$s/$/ -c /' $HOME/.bashrc
 # append |'|
 sed -i '$s/$/'\''/' $HOME/.bashrc
