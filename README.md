@@ -243,19 +243,28 @@ npm -v
 
 ```bash
 REPO="neovim/neovim"
+FILENAME="nvim-linux-x86_64.tar.gz"
 LATEST_VERSION=$(curl -sL https://api.github.com/repos/$REPO/releases/latest | jq -r ".tag_name")
-ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/nvim-linux64.tar.gz"
-curl -L $ARTIFACT_URL -o ~/Downloads/neovim.tar.gz
-tar -xvzf ~/Downloads/neovim.tar.gz -C ~/Downloads
-sudo mv ~/Downloads/nvim-linux64 /opt/neovim
-echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
-source ~/.bashrc
-mkdir ~/.venv
-cd ~/.venv
-python3 -m venv neovim
-source ~/.venv/neovim/bin/activate
-python -m pip install pynvim
-deactivate
+ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/$FILENAME"
+if curl --silent --head --fail -o /dev/null "$ARTIFACT_URL"; then
+  echo "URL exists"
+  curl -L $ARTIFACT_URL -o ~/Downloads/neovim.tar.gz
+  tar -xvzf ~/Downloads/neovim.tar.gz -C ~/Downloads
+  sudo rm -rf /opt/neovim
+  sudo mkdir -p /opt/neovim
+  sudo mv ~/Downloads/nvim-linux-x86_64/* /opt/neovim
+  echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
+  source ~/.bashrc
+  mkdir ~/.venv
+  cd ~/.venv
+  python3 -m venv neovim
+  source ~/.venv/neovim/bin/activate
+  python -m pip install pynvim
+  deactivate
+else
+  echo "URL does not exist"
+  return
+fi
 
 ```
 
