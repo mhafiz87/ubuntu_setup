@@ -23,6 +23,7 @@ source ~/.bashrc
 ```
 # Only perform after clone dotfiles
 ln -s ~/dotfiles/wezterm ~/.config/
+ln -s ~/dotfiles/nvim ~/.config/nvim
 ln -s ~/dotfiles/neovim/nvim_dev ~/.config/nvim-dev
 ln -s ~/dotfiles/bash/.bash_profile ~/.bash_profile
 
