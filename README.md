@@ -230,18 +230,17 @@ cd ~
 
 ```bash
 # Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
 
 # Download and install Node.js:
 nvm install 22
 
 # Verify the Node.js version:
-node -v
-nvm current
+node -v # Should print "v22.20.0".
 
 # Verify npm version:
-npm -v
+npm -v # Should print "10.9.3".
 
 ```
 
