@@ -5,7 +5,9 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion python3.12-venv pass pinentry-tty gnupg
+sudo apt install -y git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion pass pinentry-tty gnupg
+sudo snap install --classic code
+sudo snap install brave
 echo "" >> ~/.bashrc
 echo -e 'source /etc/profile.d/bash_completion.sh\n' >> ~/.bashrc
 source ~/.bashrc
@@ -255,17 +257,20 @@ if curl --silent --head --fail -o /dev/null "$ARTIFACT_URL"; then
   sudo mkdir -p /opt/neovim
   sudo mv ~/Downloads/nvim-linux-x86_64/* /opt/neovim
   echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
+  echo "" >> ~/.bashrc
   source ~/.bashrc
-  mkdir ~/.venv
-  cd ~/.venv
-  python3 -m venv neovim
-  source ~/.venv/neovim/bin/activate
-  python -m pip install pynvim
-  deactivate
+  rm ~/Downloads/neovim.tar.gz
+  rm -rf ~/Downloads/nvim-linux-x86_64
 else
   echo "URL does not exist"
   return
 fi
+
+mkdir -p ~/.venv
+uv venv ~/.venv/neovim --python 3.13.8
+source ~/.venv/neovim/bin/activate
+uv pip install pynvim
+deactivate
 
 ```
 
@@ -366,6 +371,7 @@ sed -i '$s/$/'\''/' $HOME/.bashrc
 
 # append |"|
 sed -i '$s/$/"/' $HOME/.bashrc
+echo "" >> ~/.bashrc
 source $HOME/.bashrc
 ```
 
