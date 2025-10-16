@@ -17,6 +17,15 @@ source ~/.bashrc
 
 ```
 
+## SSH
+
+- If encounter `"setenv WSLENV=... failed: RequestDenied: Channel request env failed. Check the AcceptEnv setting on the ssh server side"` error, modify `/etc/ssh/sshd_config`.
+- Find line that has `AcceptEnv LANG LC_*` and modify as below:
+
+  ```bash
+  AcceptEnv LANG LC_* WSLENV WEZTERM_* TERM TERM_PROGRAM TERM_PROGRAM_VERSION COLORTERM
+  ```
+
 ## Clone Dotfiles
 
 ```bash
