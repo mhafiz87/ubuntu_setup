@@ -78,7 +78,25 @@ DOWNLOAD_URL=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/release
 curl -L -o $HOME/JetBrainsMono.zip $DOWNLOAD_URL
 unzip -o $HOME/JetBrainsMono.zip -d $HOME/.fonts
 rm -f $HOME/JetBrainsMono.zip
-find . -maxdepth 1 -type f ! -regex ".*MonoNerdFont-.*" -delete
+find ~/.fonts -type f -iname "*nerdfontmono*" -delete
+find ~/.fonts -type f -iname "*nerdfontpropo*" -delete
+find ~/.fonts -type f -iname "*nlnerdfont*" -delete
+```
+
+### Meslo
+
+```bash
+test -d $HOME/.fonts || mkdir -p $HOME/.fonts
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r '.assets[] | select(.name | contains("Meslo.zip")) | .browser_download_url')
+curl -L -o $HOME/Meslo.zip $DOWNLOAD_URL
+unzip -o $HOME/Meslo.zip -d $HOME/.fonts
+rm -f $HOME/Meslo.zip
+find ~/.fonts -type f -iname "*nerdfontmono*" -delete
+find ~/.fonts -type f -iname "*nerdfontpropo*" -delete
+find ~/.fonts -type f -iname "meslolgl*" -delete
+find ~/.fonts -type f -iname "meslolgs*" -delete
+find ~/.fonts -type f -iname "meslolgmdz*" -delete
+
 ```
 
 ## Apps
