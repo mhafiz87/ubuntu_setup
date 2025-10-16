@@ -5,9 +5,13 @@
 ```bash
 sudo apt update
 sudo apt upgrade -y
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
+gsettings set org.gnome.shell.ubuntu color-scheme prefer-dark
 sudo apt install -y git cmake unzip curl build-essential zip unzip ninja-build nmap htop bat ripgrep tree wl-clipboard shellcheck bash-completion pass pinentry-tty gnupg openssh-server
 sudo snap install --classic code
 sudo snap install brave
+sudo snap install nvim --classic
 sudo ufw enable
 sudo ufw allow ssh
 sudo ufw allow from any to any port 3389 proto tcp
@@ -36,7 +40,7 @@ source ~/.bashrc
 
 ```
 # Only perform after clone dotfiles
-ln -s ~/dotfiles/wezterm ~/.config/
+ln -s ~/dotfiles/wezterm ~/.config/wezterm
 ln -s ~/dotfiles/nvim ~/.config/nvim
 ln -s ~/dotfiles/neovim/nvim_dev ~/.config/nvim-dev
 ln -s ~/dotfiles/bash/.bash_profile ~/.bash_profile
@@ -53,19 +57,23 @@ loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{
 ## XDG Path
 
 ```bash
-echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bashrc
-echo 'export XDG_DATA_HOME="$HOME/.local/share"' >> ~/.bashrc
-echo 'export XDG_CACHE_HOME="$HOME/.cache"' >> ~/.bashrc
+cp ~/.bashrc ~/.bashrc.backup
+if [ $? -eq 0 ]; then
+  echo 'export XDG_CONFIG_HOME="$HOME/.config"' >> ~/.bashrc
+  echo 'export XDG_DATA_HOME="$HOME/.local/share"' >> ~/.bashrc
+  echo 'export XDG_CACHE_HOME="$HOME/.cache"' >> ~/.bashrc
 
-echo 'if [ ! -w ${XDG_RUNTIME_DIR:="/run/user/$UID"} ]; then
+  echo 'if [ ! -w ${XDG_RUNTIME_DIR:="/run/user/$UID"} ]; then
   echo "\$XDG_RUNTIME_DIR ($XDG_RUNTIME_DIR) not writable. Unsetting." >&2
   unset XDG_RUNTIME_DIR
 else
   export XDG_RUNTIME_DIR
 fi' >> ~/.bashrc
-echo "" >> ~/.bashrc
-source ~/.bashrc
-
+  echo "" >> ~/.bashrc
+  source ~/.bashrc
+else
+    echo "$HOME/.bashrc file is missing..."
+fi
 ```
 
 ## Fonts
@@ -96,7 +104,6 @@ find ~/.fonts -type f -iname "*nerdfontpropo*" -delete
 find ~/.fonts -type f -iname "meslolgl*" -delete
 find ~/.fonts -type f -iname "meslolgs*" -delete
 find ~/.fonts -type f -iname "meslolgmdz*" -delete
-
 ```
 
 ## Apps
@@ -147,26 +154,29 @@ if [ -d "/opt/fzf" ]; then
 fi
 sudo git clone --depth 1 https://github.com/junegunn/fzf.git /opt/fzf
 sudo /opt/fzf/install
-echo 'export PATH=$PATH:/opt/fzf/bin' >> ~/.bashrc
-echo 'eval "$(fzf --bash)"' >> ~/.bashrc
-echo "" >> ~/.bashrc
-source ~/.bashrc
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
-echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
-echo "" >> ~/.bashrc
-source ~/.bashrc
-echo "export FZF_CTRL_T_OPTS=\"
+
+cp ~/.bashrc ~/.bashrc.backup
+if [ $? -eq 0 ]; then
+  echo 'export PATH=$PATH:/opt/fzf/bin' >> ~/.bashrc
+  echo 'eval "$(fzf --bash)"' >> ~/.bashrc
+  echo "" >> ~/.bashrc
+  echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
+  echo "" >> ~/.bashrc
+  echo "export FZF_CTRL_T_OPTS=\"
   --walker-skip .git,node_modules,target
   --preview 'bat -n --color=always {}'\"" >> ~/.bashrc
-echo 'export FZF_CTRL_R_OPTS="
+  echo 'export FZF_CTRL_R_OPTS="
   --color header:italic"' >> ~/.bashrc
-echo "export FZF_ALT_C_OPTS=\"
+  echo "export FZF_ALT_C_OPTS=\"
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'\"" >> ~/.bashrc
-echo "" >> ~/.bashrc
-source ~/.bashrc
-
+  echo "" >> ~/.bashrc
+  source ~/.bashrc
+else
+  echo "$HOME/.bashrc file is missing..."
+fi
 ```
 
 ### Delta for Git
@@ -222,7 +232,6 @@ source ~/.bashrc
 curl -LsSf https://astral.sh/uv/install.sh | sh
 echo "" >> ~/.bashrc
 source ~/.bashrc
-
 ```
 
 ### Pyenv (Python)
@@ -269,6 +278,13 @@ node -v # Should print "v22.20.0".
 # Verify npm version:
 npm -v # Should print "10.9.3".
 
+cp ~/.bashrc ~/.bashrc.backup
+if [ $? -eq 0 ]; then
+  echo "" >> ~/.bashrc
+  source ~/.bashrc
+else
+  echo "$HOME/.bashrc file is missing..."
+fi
 ```
 
 ### Neovim
@@ -285,9 +301,6 @@ if curl --silent --head --fail -o /dev/null "$ARTIFACT_URL"; then
   sudo rm -rf /opt/neovim
   sudo mkdir -p /opt/neovim
   sudo mv ~/Downloads/nvim-linux-x86_64/* /opt/neovim
-  echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
-  echo "" >> ~/.bashrc
-  source ~/.bashrc
   rm ~/Downloads/neovim.tar.gz
   rm -rf ~/Downloads/nvim-linux-x86_64
 else
@@ -301,6 +314,14 @@ source ~/.venv/neovim/bin/activate
 uv pip install pynvim
 deactivate
 
+cp ~/.bashrc ~/.bashrc.backup
+if [ $? -eq 0 ]; then
+  echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
+  echo "" >> ~/.bashrc
+  source ~/.bashrc
+else
+  echo "$HOME/.bashrc file is missing..."
+fi
 ```
 
 ### Wezterm
