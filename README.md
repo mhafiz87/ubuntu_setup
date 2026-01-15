@@ -147,6 +147,8 @@ source ~/.bashrc
 
 ### FZF, BAT
 
+- pending [fzf bash completion](https://github.com/lincheney/fzf-tab-completion)
+
 ```bash
 if [ -d "/opt/fzf" ]; then
     sudo rm -rf /opt/fzf
