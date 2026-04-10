@@ -335,6 +335,31 @@ sudo apt install wezterm -y
 
 ```
 
+### Creality Print
+
+- Download `Creality Print` from [Creality Download Page](https://www.creality.com/download)
+- curl -L -o $HOME/bin/creality.png -O https://wiki.creality.com/wiki/creality%E5%9B%BE%E6%A0%87.png
+- Move the downloaded file to `$HOME/bin/CrealityPrint.AppImage
+- Run below script to make the AppImage executable and add shortcut to menu:
+
+```bash
+chmod +x $HOME/bin/CrealityPrint.AppImage
+
+mkdir -p "$HOME/.local/share/applications"
+
+cat << EOF > "$HOME/.local/share/applications/CrealityPrint.desktop"
+[Desktop Entry]
+Name=Creality Print
+Exec=$HOME/bin/CrealityPrint.AppImage
+Icon=$HOME/bin/creality.png
+Type=Application
+Categories=Development;
+EOF
+
+chmod +x "$HOME/.local/share/applications/CrealityPrint.desktop"
+
+```
+
 ## LSP
 
 ### LuaLS
