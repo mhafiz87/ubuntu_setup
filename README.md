@@ -356,8 +356,6 @@ Type=Application
 Categories=Development;
 EOF
 
-chmod +x "$HOME/.local/share/applications/CrealityPrint.desktop"
-
 ```
 
 ## LSP
