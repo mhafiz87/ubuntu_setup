@@ -565,6 +565,69 @@ cat <path-of-item> | xclip -selection clipboard
 cat $HOME/.bashrc | xclip -selection clipboard
 ```
 
+### Format Drive
+
+- Identify the Disk: Use sudo fdisk -l or lsblk to find the device name (e.g., `/dev/sdb`). Never format your root drive (usually `/dev/sda` or `/dev/nvme0n1`). 
+- Partition the Disk: Use fdisk or gdisk to create a partition. For example, with `fdisk /dev/sdb`:
+  - Press n to create a new partition.
+  - Accept defaults for size to use the whole disk.
+  - Press w to write the changes.
+- Format the Partition: Use mkfs to apply a file system. The ext4 file system is recommended for Linux-only drives:
+
+  ```bash
+  sudo mkfs.ext4 /dev/sdb1
+  ```
+
+- Mount the Drive: Create a directory and mount the partition:
+
+  ```bash
+  sudo mkdir /media/disk
+  sudo mount /dev/sdb1 /media/disk
+  ```
+
+### Configure Persistent Mounting
+
+- Find the UUID: Run the following command to identify the UUID of your formatted partition:
+
+  ```bash
+  sudo blkid
+  ```
+
+- Copy the UUID string (e.g., `1234-5678-abcd-efgh`) associated with your partition (e.g., `/dev/sdb1`). 
+- Create a Mount Point (if not already done): Ensure the directory where you want to mount the drive exists:
+
+  ```bash
+  sudo mkdir -p /media/disk
+  ```
+
+- Edit /etc/fstab: Open the file with a text editor:
+
+  ```bash
+  sudo nano /etc/fstab
+  ```
+
+- Important: Before editing, it is good practice to back up the file (`sudo cp /etc/fstab /etc/fstab.bak`). An error here can prevent your system from booting. 
+- Add the Entry: Append a new line to the end of the file using the following format:
+
+  ```
+  UUID=your-uuid-here  /media/disk  ext4  defaults  0  2
+  ```
+
+- Replace `your-uuid-here` with the actual UUID copied earlier.
+  - Field 1: `UUID=...` (The unique identifier).
+  - Field 2: `/media/disk` (The mount point directory).
+  - Field 3: `ext4` (The file system type; change if you used NTFS, FAT32, etc.).
+  - Field 4: `defaults` (Standard mount options).
+  - Field 5: `0` (Dump backup option; usually 0).
+  - Field 6: `2` (File system check order; use 0 for swap or network drives, 1 for root, 2 for others). 
+- Test the Configuration: Before rebooting, verify the entry is correct by running:
+
+  ```bash
+  sudo mount -a
+  ```
+
+- If no error message appears, the configuration is valid. You can verify the mount with `df -h` or `mount | grep /media/disk`. If errors occur, correct the `/etc/fstab` file immediately. 
+
 ---
 
 ## References
