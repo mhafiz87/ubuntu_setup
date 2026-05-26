@@ -344,20 +344,9 @@ else
   return
 fi
 
-mkdir -p ~/.venv
-uv venv ~/.venv/neovim --python 3.13.8
-source ~/.venv/neovim/bin/activate
-uv pip install pynvim
-deactivate
-
-cp ~/.bashrc ~/.bashrc.backup
-if [ $? -eq 0 ]; then
-  echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
-  echo "" >> ~/.bashrc
-  source ~/.bashrc
-else
-  echo "$HOME/.bashrc file is missing..."
-fi
+echo "" >> ~/.bashrc
+echo 'export PATH=$PATH:/opt/neovim/bin' >> ~/.bashrc
+source ~/.bashrc
 ```
 
 ### Wezterm
