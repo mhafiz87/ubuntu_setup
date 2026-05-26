@@ -1,0 +1,70 @@
+// Place your key bindings in this file to override the defaults
+[
+  // Navigate Open Files
+  { "key": "ctrl+tab", "command": "workbench.action.nextEditor", },
+  { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditor", },
+  // Font Zoom
+  { "key": "ctrl+=", "command": "editor.action.fontZoomIn", "when": "editorTextFocus" },
+  { "key": "ctrl+-", "command": "editor.action.fontZoomOut", "when": "editorTextFocus" },
+  { "key": "ctrl+0", "command": "editor.action.fontZoomReset", "when": "editorTextFocus" },
+  { "key": "ctrl+=", "command": "workbench.action.terminal.fontZoomIn", "when": "terminalFocus" },
+  { "key": "ctrl+-", "command": "workbench.action.terminal.fontZoomOut", "when": "terminalFocus" },
+  { "key": "ctrl+0", "command": "workbench.action.terminal.fontZoomReset", "when": "terminalFocus" },
+  // File Explorer
+  {
+    "key": "a",
+    "command": "workbench.files.action.createFileFromExplorer",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "f",
+    "command": "workbench.files.action.createFolderFromExplorer",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "c",
+    "command": "filesExplorer.copy",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "d",
+    "command": "moveFileToTrash",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "g y",
+    "command": "copyFilePath",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "y",
+    "command": "copyRelativeFilePath",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "-",
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  // Outline View
+  {
+    "key": "-",
+    "command": "outline.collapse",
+    "when": "outlineFocused && outline.active && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+]
