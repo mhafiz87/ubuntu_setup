@@ -29,6 +29,16 @@ source ~/.bashrc
   AcceptEnv LANG LC_* WSLENV WEZTERM_* TERM TERM_PROGRAM TERM_PROGRAM_VERSION COLORTERM
   ```
 
+## Forcing x11
+
+- For specific application
+
+```bash
+GDK_BACKEND=x11 <application-name>
+# Example forcing x11 for anydesk
+GDK_BACKEND=x11 anydesk
+```
+
 ## Clone Dotfiles
 
 ```bash
