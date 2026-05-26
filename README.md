@@ -555,6 +555,16 @@ sudo systemctl enable isc-dhcp-server
 sudo systemctl status isc-dhcp-server
 ```
 
+## Tips
+
+### Copy From Command Line (CLI) Output To Clipboard
+
+```bash
+cat <path-of-item> | xclip -selection clipboard
+# example copy content of $HOME/.bashrc to clipboard
+cat $HOME/.bashrc | xclip -selection clipboard
+```
+
 ---
 
 ## References
