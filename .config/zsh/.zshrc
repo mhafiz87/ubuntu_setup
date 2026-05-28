@@ -26,3 +26,16 @@ ZVM_VI_SURROUND_BINDKEY=s-prefix
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH=$PATH:/opt/neovim/bin
+
+bat_f() {
+  if [ $# -eq 0 ]; then
+      whereis batcat
+  else
+      batcat "$@"
+fi
+}
+alias -g bat='bat_f'
