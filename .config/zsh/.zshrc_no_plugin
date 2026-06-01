@@ -13,6 +13,16 @@ compinit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Clone zsh-autosuggestion if yet to clone
+if [[ ! -d "$HOME/.config/zsh/zsh-autosuggestions" ]]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git --depth 1 $HOME/.config/zsh/zsh-autosuggestions
+fi
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Clone zsh-syntax-highlighting if yet to clone
+if [[ ! -d "$HOME/.config/zsh/zsh-autosuggestions" ]]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git --depth 1 $HOME/.config/zsh/zsh-syntax-highlighting
+fi
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 eval "$(starship init zsh)"
