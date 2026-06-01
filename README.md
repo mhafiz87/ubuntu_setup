@@ -543,6 +543,20 @@ sudo systemctl status isc-dhcp-server
 
 ## Tips
 
+### Changing default Shell
+
+- To list all shell available:
+
+  ```bash
+  cat /etc/shells
+  ```
+
+- To permanently change shell (for example change to zsh)
+
+  ```bash
+  chsh -s /bin/zsh
+  ```
+
 ### Copy From Command Line (CLI) Output To Clipboard
 
 ```bash
