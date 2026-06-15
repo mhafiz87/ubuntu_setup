@@ -1,28 +1,31 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+# History
+HISTFILE="$HOME/.histfile"
 HISTSIZE=10000
 SAVEHIST=10000
+
+# Use Vi keybindings
 bindkey -v
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# FZF
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
-# Clone zsh-autosuggestion if yet to clone
-if [[ ! -d "$HOME/.config/zsh/zsh-autosuggestions" ]]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git --depth 1 $HOME/.config/zsh/zsh-autosuggestions
-fi
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Plugin directory
+ZSH_PLUGIN_DIR="$HOME/.config/zsh"
 
-# Clone zsh-syntax-highlighting if yet to clone
-if [[ ! -d "$HOME/.config/zsh/zsh-autosuggestions" ]]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git --depth 1 $HOME/.config/zsh/zsh-syntax-highlighting
-fi
-source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh-autosuggestions
+[ -f "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+  source "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# Clone zsh-completions if yet to clone
-if [[ ! -d "$HOME/.config/zsh/zsh-completions" ]]; then
-    git clone https://github.com/zsh-users/zsh-completions.git --depth 1 $HOME/.config/zsh/zsh-completions
-fi
-fpath=(~/.zsh/zsh-completions/src $fpath)
-autoload -Uz compinit && compinit
+# zsh-completions
+fpath=("$ZSH_PLUGIN_DIR/zsh-completions/src" $fpath)
 
-eval "$(starship init zsh)"
+# Initialize completion
+autoload -Uz compinit
+compinit
+
+# Starship prompt
+[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+
+# zsh-syntax-highlighting
+[ -f "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+  source "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
