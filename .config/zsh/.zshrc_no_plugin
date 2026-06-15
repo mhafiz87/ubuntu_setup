@@ -1,43 +1,66 @@
+# -----------------------------
 # History
+# -----------------------------
 HISTFILE="$HOME/.histfile"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# Avoid duplicate history entries
 setopt HIST_IGNORE_ALL_DUPS
-# Sync history across terminal windows
 setopt SHARE_HISTORY
+setopt INTERACTIVE_COMMENTS
 
-# Environment Variables
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+# -----------------------------
+# Environment
+# -----------------------------
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
+# -----------------------------
 # Aliases
-alias ll='ls -lah'
+# -----------------------------
+alias ll='ls -lahF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+# -----------------------------
 # FZF
+# -----------------------------
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
-# Plugin directory
+# -----------------------------
+# Completion
+# -----------------------------
 ZSH_PLUGIN_DIR="$HOME/.config/zsh"
 
-# zsh-autosuggestions
-[ -f "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
-  source "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# zsh-completions
 fpath=("$ZSH_PLUGIN_DIR/zsh-completions/src" $fpath)
 
-# Initialize completion
 autoload -Uz compinit
 compinit -C
 
+# -----------------------------
+# zsh-vi-mode
+# -----------------------------
+[ -f "$ZSH_PLUGIN_DIR/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ] && \
+  source "$ZSH_PLUGIN_DIR/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+ZVM_VI_VISUAL_ESCAPE_BINDKEY=jk
+
+# -----------------------------
 # Starship prompt
+# -----------------------------
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
+# -----------------------------
+# zsh-autosuggestions
+# -----------------------------
+[ -f "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+  source "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# -----------------------------
 # zsh-syntax-highlighting
+# Must be last
+# -----------------------------
 [ -f "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
   source "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
