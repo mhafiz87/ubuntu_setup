@@ -327,6 +327,12 @@ git clone https://github.com/zsh-users/zsh-completions.git ~/.config/zsh/zsh-com
 git clone https://github.com/jeffreytse/zsh-vi-mode.git ~/.config/zsh/zsh-vi-mode
 ```
 
+- To change default shell to ZSH:
+
+  ```bash
+  chsh -s $(which zsh)
+  ```
+
 - References:
   - [Scott Spence - My Updated ZSH Config](https://scottspence.com/posts/my-updated-zsh-config-2025)
 
