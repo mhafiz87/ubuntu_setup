@@ -3,8 +3,23 @@ HISTFILE="$HOME/.histfile"
 HISTSIZE=10000
 SAVEHIST=10000
 
+# Avoid duplicate history entries
+setopt HIST_IGNORE_ALL_DUPS
+# Sync history across terminal windows
+setopt SHARE_HISTORY
+
 # Use Vi keybindings
 bindkey -v
+
+# Environment Variables
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# Aliases
+alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
 
 # FZF
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
@@ -21,7 +36,7 @@ fpath=("$ZSH_PLUGIN_DIR/zsh-completions/src" $fpath)
 
 # Initialize completion
 autoload -Uz compinit
-compinit
+compinit -C
 
 # Starship prompt
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
