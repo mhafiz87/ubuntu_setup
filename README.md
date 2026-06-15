@@ -324,6 +324,7 @@ mkdir -p ~/.config/zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.config/zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-completions.git ~/.config/zsh/zsh-completions
+git clone https://github.com/jeffreytse/zsh-vi-mode.git ~/.config/zsh/zsh-vi-mode
 ```
 
 - References:
