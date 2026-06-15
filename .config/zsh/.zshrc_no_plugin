@@ -8,9 +8,6 @@ setopt HIST_IGNORE_ALL_DUPS
 # Sync history across terminal windows
 setopt SHARE_HISTORY
 
-# Use Vi keybindings
-bindkey -v
-
 # Environment Variables
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
