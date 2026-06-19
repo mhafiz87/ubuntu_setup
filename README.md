@@ -298,6 +298,17 @@ else
 fi
 ```
 
+### Starship
+
+- Install script
+
+```bash
+curl -sS https://starship.rs/install.sh | sh
+```
+
+- References:
+  - [Installation](https://starship.rs/guide/#%F0%9F%9A%80-installation)
+
 ### ZSH
 
 #### Using OhMyZSH
