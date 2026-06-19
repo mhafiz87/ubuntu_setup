@@ -212,11 +212,37 @@ git config --global merge.conflictStyle zdiff3
 ### Git Credential Manager
 
 ```bash
+sudo apt install -y jq libicu-dev pass
+
+set -e
+
 REPO="git-ecosystem/git-credential-manager"
-LATEST_VERSION=$(curl -sL https://api.github.com/repos/$REPO/releases/latest | jq -r ".tag_name")
-ARTIFACT_URL="https://github.com/$REPO/releases/download/$LATEST_VERSION/gcm-linux_amd64.${LATEST_VERSION//v/}.deb"
-curl -L $ARTIFACT_URL -o ~/Downloads/gcm-linux-amd64.deb
-sudo dpkg -i ~/Downloads/gcm-linux-amd64.deb
+
+case "$(uname -m)" in
+  x86_64)
+    ARCH="x64"
+    ;;
+  aarch64|arm64)
+    ARCH="arm64"
+    ;;
+  *)
+    echo "Unsupported architecture: $(uname -m)"
+    exit 1
+    ;;
+esac
+
+URL=$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest" \
+  | jq -r --arg arch "$ARCH" '
+      .assets[].browser_download_url
+      | select(contains("gcm-linux-" + $arch + "-") and endswith(".deb"))
+    ')
+
+echo "Downloading: $URL"
+
+mkdir -p $HOME/Downloads
+curl -fL -o $HOME/Downloads/gcm.deb "$URL"
+
+sudo dpkg -i $HOME/Downloads/gcm.deb
 git-credential-manager configure
 git config --global credential.credentialStore gpg
 echo "export GPG_TTY=$(tty)" >> ~/.bashrc
