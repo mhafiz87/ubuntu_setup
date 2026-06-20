@@ -8,7 +8,7 @@ sudo apt upgrade -y
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
 gsettings set org.gnome.shell.ubuntu color-scheme prefer-dark
-sudo apt install -y git cmake unzip curl build-essential dkms linux-headers-$(uname -r) zip unzip ninja-build nmap htop jq bat ripgrep tree wl-clipboard shellcheck bash-completion pass pinentry-tty gnupg openssh-server
+sudo apt install -y git cmake unzip curl build-essential dkms linux-headers-$(uname -r) zip unzip ninja-build nmap htop jq bat ripgrep fd-find tree wl-clipboard shellcheck bash-completion pass pinentry-tty gnupg openssh-server
 sudo snap install --classic code
 sudo snap install brave
 sudo snap install nvim --classic
